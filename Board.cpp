@@ -71,7 +71,7 @@ Board::Board(const Board &b) {
 
 //Rotate East using row specified
 void Board::rotateEast(int row) {
-	if (row < 0 || row >= SIZE) return;
+	if (row <0 || row >= SIZE) return;
 	int wrap = board[row][SIZE - 1];
 	for (int i = SIZE - 2; i >= 0; i--)
 		board[row][i + 1] = board[row][i];
@@ -79,16 +79,16 @@ void Board::rotateEast(int row) {
 }
 //Rotate West using row specified
 void Board::rotateWest(int row) {
-	if (row < 0 || row >= SIZE) return;
+	if (row <0 || row >= SIZE) return;
 	int wrap = board[row][0];
-	for (int i = 0; i < SIZE - 1; i++)
+	for (int i = 0; i <SIZE - 1; i++)
 		board[row][i] = board[row][i + 1];
 	board[row][SIZE - 1] = wrap;
 }
 
 //Rotate South using column specified
 void Board::rotateSouth(int col) {
-	if (col < 0 || col >= SIZE) return;
+	if (col <0 || col >= SIZE) return;
 	int wrap = board[SIZE - 1][col];
 	for (int i = SIZE - 2; i >= 0; i--)
 		board[i + 1][col] = board[i][col];
@@ -96,9 +96,9 @@ void Board::rotateSouth(int col) {
 }
 //Rotate North using column specified
 void Board::rotateNorth(int col) {
-	if (col < 0 || col >= SIZE) return;
+	if (col <0 || col >= SIZE) return;
 	int wrap = board[0][col];
-	for (int i = 0; i < SIZE - 1; i++)
+	for (int i = 0; i <SIZE - 1; i++)
 		board[i][col] = board[i + 1][col];
 	board[SIZE - 1][col] = wrap;
 }
@@ -122,10 +122,8 @@ std::string Board::move(int m) {
 	case 2:  rotateEast(sub); ss << ">" << sub; break;
 	case 3:  rotateWest(sub); ss << "<" << sub; break;
 	}
-	history += ss.str();
 	return ss.str();
 }
-
 
 
 

@@ -8,8 +8,9 @@ void iterate(Board bIn, boardqueue& theset);
 int main()
 {
 	Board initialBoard;
-	initialBoard.makeBoard(1);
-	initialBoard.generation = 0;
+	initialBoard.makeBoard(2);
+	//initialBoard.inputBoard("123645978");
+	initialBoard.generation = -1;
 	initialBoard.prevMove = 12;
 	initialBoard.history = "";
 
@@ -66,24 +67,52 @@ void iterate(Board bIn, boardqueue& theset)
 	{
 		Board b = bIn;
 		switch (i) {
-		case 0: if (i != prevMove) { b.rotateNorth(0);  b.move(0); } break;
-		case 1: if (i != prevMove) { b.rotateNorth(1);  b.move(1); } break;
-		case 2: if (i != prevMove) { b.rotateNorth(2);  b.move(2); } break;
-		case 3: if (i != prevMove) { b.rotateSouth(0);  b.move(3); } break;
-		case 4: if (i != prevMove) { b.rotateSouth(1);  b.move(4); } break;
-		case 5: if (i != prevMove) { b.rotateSouth(2);  b.move(5); } break;
-		case 6: if (i != prevMove) { b.rotateEast(0);   b.move(6); } break;
-		case 7: if (i != prevMove) { b.rotateEast(1);   b.move(7); } break;
-		case 8: if (i != prevMove) { b.rotateEast(2);   b.move(8); } break;
-		case 9: if (i != prevMove) { b.rotateWest(0);   b.move(9); } break;
-		case 10:if (i != prevMove) { b.rotateWest(1);   b.move(10); } break;
-		case 11:if (i != prevMove) { b.rotateWest(2);   b.move(11); } break;
+		case 0:  b.rotateNorth(0);
+		case 1:  b.rotateSouth(0);
+		case 2:  b.rotateEast(0);
+		case 3:  b.rotateWest(0);
+		case 4:  b.rotateNorth(1);
+		case 5:  b.rotateSouth(1);
+		case 6:  b.rotateEast(1);
+		case 7:  b.rotateWest(1);
+		case 8:  b.rotateNorth(2);
+		case 9:  b.rotateSouth(2);
+		case 10: b.rotateEast(2);
+		case 11: b.rotateWest(2);
 		}
+
+		b.writeHistory(b.move(i));
 		b.prevMove = i;
 		b.generation = bIn.generation + 1;
 		theset.add(b);
 	}
 
 }
+/*
+case 0:  b.rotateNorth(0);
+case 1:  b.rotateSouth(0);
+case 2:  b.rotateEast(0);
+case 3:  b.rotateWest(0);
+case 4:  b.rotateNorth(1);
+case 5:  b.rotateSouth(1);
+case 6:  b.rotateEast(1);
+case 7:  b.rotateWest(1);
+case 8:  b.rotateNorth(2);
+case 9:  b.rotateSouth(2);
+case 10: b.rotateEast(2);
+case 11: b.rotateWest(2);
+*/
 
-
+/*
+case 0: if (i != prevMove) { b.rotateNorth(0); } break;
+case 1: if (i != prevMove) { b.rotateNorth(1); } break;
+case 2: if (i != prevMove) { b.rotateNorth(2); } break;
+case 3: if (i != prevMove) { b.rotateSouth(0); } break;
+case 4: if (i != prevMove) { b.rotateSouth(1); } break;
+case 5: if (i != prevMove) { b.rotateSouth(2); } break;
+case 6: if (i != prevMove) { b.rotateEast(0);  } break;
+case 7: if (i != prevMove) { b.rotateEast(1);  } break;
+case 8: if (i != prevMove) { b.rotateEast(2);  } break;
+case 9: if (i != prevMove) { b.rotateWest(0);  } break;
+case 10:if (i != prevMove) { b.rotateWest(1);  } break;
+case 11:if (i != prevMove) { b.rotateWest(2);  } break;*/
