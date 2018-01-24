@@ -11,10 +11,10 @@
 class boardqueue
 {
 public:
-	Board *front;
+	Board * front;
 	Board *back;
 	boardqueue();
 	void add(Board b);
-	Board* remove();
+	Board remove();
 };
 #endif

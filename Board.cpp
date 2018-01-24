@@ -58,9 +58,10 @@ void Board::makeBoard(int jumbleCt) {
 
 //Copy constructor
 Board::Board(const Board &b) {
-	std::string history = "";
-	int generation = 0;
-	int prevMove = 12;
+
+	history = b.history;
+	generation = b.generation;
+	prevMove = b.prevMove;
 	assert(SIZE > 0);
 	for (int i = 0; i < SIZE; i++)
 		for (int j = 0; j < SIZE; j++)
@@ -113,8 +114,7 @@ void Board::jumble(int ct) {
 std::string Board::move(int m) {
 	std::stringstream ss;
 	ss << ":";
-	//int sub = m/ 4;
-	int sub = m % 3;
+	int sub = m / 4;
 	switch (m % 4)
 	{
 	case 0:  rotateNorth(sub); ss << "^" << sub; break;
