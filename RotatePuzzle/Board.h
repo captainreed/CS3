@@ -12,11 +12,11 @@ class Board {
 public:
 	static const int SIZE = 3;
 	Board *next;
-	std::string history;
-	int generation;
-	int prevMove;
-	void writeHistory(std::string move);
-	std::string getHistory();
+	std::string history;//this will be the string that holds the history of the board
+	int generation;//the generation of the board from the original
+	int prevMove;//the move that was made to create this board
+	void writeHistory(std::string move);//writes the move string to the history string
+	std::string getHistory();//returns the history string
 	int board[SIZE][SIZE];  // Values of board
 	Board(const Board & b);  //Create board from another board
 	std::string move(int m);  //m is which move.  Returns string describing move

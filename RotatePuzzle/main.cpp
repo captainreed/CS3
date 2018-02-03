@@ -3,88 +3,98 @@
 #include "Board.h"
 #include "Queue.h"
 
-Board* iterate(Board bIn);
+void iterate(Board bIn, boardqueue& theset);
+void solveBoard(int solver);
 
 int main()
 {
-	Board *initialBoard = new Board();
-	initialBoard->makeBoard(1);
-	initialBoard->generation = 5;
-	initialBoard->prevMove = 12;
-	initialBoard->writeHistory("kjhjkjhjk");
-	
 
+	solveBoard(1);
+	solveBoard(2);
+	solveBoard(3);
+	solveBoard(4);
+	
+	std::string answer;
+	std::cin >> answer;
+	return 0;
+}
+
+//solves and prints the boards located in input1,input3 and input3 text files located in the same directory as the project files
+//if you give it 4 it will solve and print a randomly generated board
+void solveBoard(int solver)
+{
+	Board initialBoard;
+	initialBoard.makeBoard(2);
+	std::string filepath;
+	//will make the initialboar the board found in the input1.txt file
+	if (solver == 1) { filepath = "input1.txt"; initialBoard.inputBoard(filepath); }
+	//will make the initialboar the board found in the input2.txt file
+
+	if (solver == 2) { filepath = "input2.txt"; initialBoard.inputBoard(filepath); }
+	//will make the initialboar the board found in the input3.txt file
+
+	if (solver == 3) { filepath = "input3.txt"; initialBoard.inputBoard(filepath); }
+
+	//will make initialboard a randomly generated board jumbled by 2 moves
+	if (solver == 4) { initialBoard.makeBoard(2); }
+	//finish creating initialboard
+	initialBoard.generation = -1;
+	initialBoard.prevMove = 12;
+	initialBoard.history = "";
+
+	//the index keeps track of how many boards have been created in the solution
 	int index = 0;
 	bool finished = false;
-
+	//this is the perfect board that we will compare all of the boards to
 	Board solvedBoard;
 	solvedBoard.makeBoard(0);
-
+	//the queue that every board will be added to
 	boardqueue set;
 
-	set.add(*initialBoard);
+	set.add(initialBoard);
+	//create all possible boards from the initialboard and add it to the queue
+	iterate(initialBoard, set);
 
-	Board *firstset = iterate(*initialBoard);
-	for (int i = 0; i < 12; i++)
-		set.add(*(firstset + i));
-
-	Board *latest = new Board();
+	//this will be the latest board every time you remove a board from the top of the queue
+	Board latest;
 
 
 	while (!finished)
 	{
 		latest = set.remove();
-		if (solvedBoard.operator==(*latest))
+		if (solvedBoard.operator==(latest))
 		{
 			finished = true;
-			std::cout << "YOU WIN!!! OriginalBoard" << std::endl;
-			std::cout << latest->toString() << std::endl;
+			std::cout << "YOU WIN!!! OriginalBoard" << latest.history << std::endl;
+			std::cout << latest.toString() << std::endl;
 			//what to do if we finish 
-			return 0;
 		}
 		else
 		{
-			std::cout << "State " << index << " From State " << latest->generation << " History " << latest->getHistory() << std::endl;
-			std::cout << latest->toString() << std::endl;
+			std::cout << "State " << index << " From State " << latest.generation << " History " << latest.getHistory() << std::endl;
+			std::cout << latest.toString() << std::endl;
 			//create the 12 possible boards from this board and add them to the queue
-			Board *newset = iterate(*latest);
-			for (int i = 0; i < 12; i++)
-			{
-				set.add(*(newset + i));
-			}
-			//append the next 12 children from this node on to the back of the queue
+			iterate(latest, set);
+
 		}
 		index++;
 
 	}
-	return 0;
 }
 
-
-//returns a pointer to an array of memory locations of boards that are shifted by only 1 move in every direction except the one from which it came
-Board* iterate(Board bIn)
+//creates a new board with every move posibility from the givem board and adds it to the queue
+void iterate(Board bIn, boardqueue& theset)
 {
 	int prevMove = bIn.prevMove;
-	static Board b[12] = { bIn,bIn,bIn,bIn,bIn,bIn,bIn,bIn,bIn,bIn,bIn,bIn };
+
 	for (int i = 0; i < 12; i++)
 	{
-		switch (i) {
-		case 0: if (i != prevMove) { b[i].rotateNorth(0); b[i].writeHistory(bIn.getHistory()); b[i].move(0); b[i].generation = bIn.generation + 1; } break;
-		case 1: if (i != prevMove) { b[i].rotateNorth(1); b[i].writeHistory(bIn.getHistory()); b[i].move(1); b[i].generation = bIn.generation + 1; } break;
-		case 2: if (i != prevMove) { b[i].rotateNorth(2); b[i].writeHistory(bIn.getHistory()); b[i].move(2); b[i].generation = bIn.generation + 1; } break;
-		case 3: if (i != prevMove) { b[i].rotateSouth(0); b[i].writeHistory(bIn.getHistory()); b[i].move(3); b[i].generation = bIn.generation + 1; } break;
-		case 4: if (i != prevMove) { b[i].rotateSouth(1); b[i].writeHistory(bIn.getHistory()); b[i].move(4); b[i].generation = bIn.generation + 1; } break;
-		case 5: if (i != prevMove) { b[i].rotateSouth(2); b[i].writeHistory(bIn.getHistory()); b[i].move(5); b[i].generation = bIn.generation + 1; } break;
-		case 6: if (i != prevMove) { b[i].rotateEast(0); b[i].writeHistory(bIn.getHistory());  b[i].move(6); b[i].generation = bIn.generation + 1; } break;
-		case 7: if (i != prevMove) { b[i].rotateEast(1); b[i].writeHistory(bIn.getHistory());  b[i].move(7); b[i].generation = bIn.generation + 1; } break;
-		case 8: if (i != prevMove) { b[i].rotateEast(2); b[i].writeHistory(bIn.getHistory());  b[i].move(8); b[i].generation = bIn.generation + 1; } break;
-		case 9: if (i != prevMove) { b[i].rotateWest(0); b[i].writeHistory(bIn.getHistory());  b[i].move(9); b[i].generation = bIn.generation + 1; } break;
-		case 10:if (i != prevMove) { b[i].rotateWest(1); b[i].writeHistory(bIn.getHistory());  b[i].move(10); b[i].generation = bIn.generation + 1; } break;
-		case 11:if (i != prevMove) { b[i].rotateWest(2); b[i].writeHistory(bIn.getHistory());  b[i].move(11); b[i].generation = bIn.generation + 1; } break;
-		}
-
+		Board b = bIn;
+		b.writeHistory(b.move(i));
+		b.prevMove = i;
+		b.generation = bIn.generation + 1;
+		theset.add(b);
 	}
-	return b;
 
 }
 

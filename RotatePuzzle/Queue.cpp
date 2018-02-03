@@ -9,9 +9,6 @@ boardqueue::boardqueue()
 void boardqueue::add(Board b)
 {
 	Board *temp = new Board(b);
-	temp->writeHistory(b.getHistory());
-	temp->generation = b.generation;
-	temp->prevMove = b.prevMove;
 	temp->next = NULL;
 
 	if (front == NULL)
@@ -22,32 +19,17 @@ void boardqueue::add(Board b)
 	else
 	{
 		back->next = temp;
-		//back = back->next;
 		back = temp;
 		back->next = NULL;
 	}
 }
-Board* boardqueue::remove()
+Board boardqueue::remove()
 {
 	Board *tmpFront;
-	
-	if (front == NULL)
-		return NULL;
-	else
-	{
-		tmpFront = front;
-		tmpFront->writeHistory(front->getHistory());
-		tmpFront->generation = front->generation;
-		tmpFront->prevMove = front->prevMove;
+	tmpFront = front;
+	front = front->next;
 
-		//this is where the problem is
-		front = front->next;
-		//delete(tmpFront);
-		return tmpFront;
-	}
-	//front = front->next;
-	
-
+	return *tmpFront;
 }
 
 
