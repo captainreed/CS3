@@ -115,11 +115,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\..\..\..\..\..\Downloads\binarytree.h" />
+    <ClCompile Include="binarytree.cpp" />
+    <ClCompile Include="TestTrees.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\..\..\..\..\..\Downloads\TestTrees.cpp" />
-    <ClCompile Include="binarytree.cpp" />
+    <ClInclude Include="binarytree.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

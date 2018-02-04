@@ -1,3 +1,3 @@
-//#include "binarytree.h"
+#include "binarytree.h"
 #include "iostream"
 
