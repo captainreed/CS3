@@ -31,13 +31,13 @@ int main()
 	tree2.printTree("Random tree");
 	
 	tree2.printShort("\nList of Keys: ");
-	/*
+	
 	tree2.fall();
 	tree2.printTree("\n Tree with Leaves Removed");
 
 	/* You can solve this however you want.  The problem is I really don't want my main program to see pointers, but I need to have a current pointer that keeps 
 	moving throug the tree.  This code assumes a "current Node" is saved inside the tree.  getFirst sets is.  successor also sets it.  */
-	/*
+	
 	tree1.getFirst();
 	std::cout << "starting at " << tree1.getCurrNodeValue()<< std::endl;
 	for (int i = 0; i < 10; i++)
@@ -45,7 +45,7 @@ int main()
 	    std::cout <<  "The next sucessor is " << tree1.getCurrNodeValue() << std::endl;
 	}
 
-
+	/*
 	tree1.printTree("Tree 3");
 
 	std::cout << "\nclosest common between 1 and 50 " << tree1.closestCommon(1,50);
@@ -109,8 +109,8 @@ int main()
 	tree4.getMaxCompleteSubtree();
 	tree3.printTree("FindMaxComplete");
 	tree3.getMaxCompleteSubtree();
-	
+	*/
 	char c;
 	std::cin >> c;  //Pause 
-	*/
+	
 }

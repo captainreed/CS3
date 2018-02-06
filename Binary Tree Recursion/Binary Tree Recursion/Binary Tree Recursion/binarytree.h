@@ -47,25 +47,20 @@ public:
 	}
 
 
-
-	std::string verticalElements(TreeNode<Etype>* node, int msg)
+	void printInOrder(TreeNode<Etype>* node)
 	{
-		std::string message = msg;
 		
-		if (node == NULL) {
-			return message;
-		}
-		else {
-			message = msg + (char)node->element;
-			return verticalElements(node->parent, message);
-		}
+		if (node == NULL)
+			return;
 
+		printInOrder(node->left);
+		std::cout << node->element << endl;
+		printInOrder(node->right);
 	}
 
 	void printShort(std::string message) {
-
-		message = message + verticalElements(currentNode,currentNode->element);
 		std::cout << message << endl;
+		printInOrder(root);
 	}
 
 
@@ -79,13 +74,74 @@ public:
 	{
 
 	}
+
+	//child successor function
+	void traverseDown(TreeNode<Etype>* node)
+	{
+		if (node == NULL)
+			return;
+		if (node->left == NULL)
+			currentNode = node;
+		else
+			traverseDown(node->left);
+	}
+	void traverseUp(TreeNode<Etype>* node)
+	{
+		if (node == NULL)
+			return;
+
+		if (node->element < currentNode->element)
+			traverseUp(node->parent);
+		else
+			currentNode = node;
+	}
+
+
 	//find the successor to currentNode.  Change currentNode to point to the successor.
-	void successor(){}
+	void successor(){
+		if (currentNode->right == NULL)
+			traverseUp(currentNode->parent);
+		else
+			traverseDown(currentNode->right);
+
+	}
+
+
+
+
 	int width(){return 0;}
 	void getMaxCompleteSubtree() {}
 
 	bool perfectBalance(Etype *list, int beg, int final) { return true; }
-	void fall() {};
+	
+	void removeLeaves(TreeNode<Etype>* node)
+	{
+		if (node == NULL)
+			return;
+		if (node->right == NULL && node->left == NULL)
+		{
+			if (node->parent->left == node) {
+				node->parent->left = NULL;
+			}
+			else
+			{
+				node->parent->right = NULL;
+			}
+		}
+		else
+		{
+			removeLeaves(node->right);
+			removeLeaves(node->left);
+		}
+	}
+
+	void fall() {
+		
+		removeLeaves(root);
+	};
+
+
+
 	void flip() {};
 	Etype closestCommon(Etype t1, Etype t2) { return LOW; };
 	void buildFromPreorder(Etype* list) {};
