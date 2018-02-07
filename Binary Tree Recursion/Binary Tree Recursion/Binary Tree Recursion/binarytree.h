@@ -30,7 +30,36 @@ protected:
 	void printTree(TreeNode<Etype> * t, std::string indent, int currDepth = 0, int maxDepth = numeric_limits<int>::max());
 
 	TreeNode<Etype> * findFirst(TreeNode<Etype> * t) const;
-	TreeNode<Etype> * find(TreeNode<Etype> * curr, Etype value)const;
+
+	TreeNode<Etype> * find(TreeNode<Etype> * curr, Etype value)
+	{
+
+		if (curr == NULL)
+			return NULL;
+
+		if (curr->element == value)
+		{
+			return curr;
+		}
+		else
+		{
+			TreeNode<Etype> * compare;
+			//if(curr->left != NULL)
+			 compare = find(curr->left, value);
+			//if (curr->right != NULL)
+			 if (compare != NULL) {
+				 return compare;
+			 }
+			 else {
+				 return find(curr->right, value);
+			 }
+
+		}
+
+
+	}
+
+
 	int size(TreeNode<Etype> *t) const;
 	TreeNode <Etype>* currentNode;
 public:
@@ -49,7 +78,7 @@ public:
 
 	void printInOrder(TreeNode<Etype>* node)
 	{
-		
+
 		if (node == NULL)
 			return;
 
@@ -85,6 +114,7 @@ public:
 		else
 			traverseDown(node->left);
 	}
+	//parent successor function
 	void traverseUp(TreeNode<Etype>* node)
 	{
 		if (node == NULL)
@@ -98,7 +128,7 @@ public:
 
 
 	//find the successor to currentNode.  Change currentNode to point to the successor.
-	void successor(){
+	void successor() {
 		if (currentNode->right == NULL)
 			traverseUp(currentNode->parent);
 		else
@@ -109,11 +139,11 @@ public:
 
 
 
-	int width(){return 0;}
+	int width() { return 0; }
 	void getMaxCompleteSubtree() {}
 
 	bool perfectBalance(Etype *list, int beg, int final) { return true; }
-	
+
 	void removeLeaves(TreeNode<Etype>* node)
 	{
 		if (node == NULL)
@@ -136,14 +166,60 @@ public:
 	}
 
 	void fall() {
-		
+
 		removeLeaves(root);
 	};
 
 
 
 	void flip() {};
-	Etype closestCommon(Etype t1, Etype t2) { return LOW; };
+
+	Etype closestCommon(Etype t1, Etype t2)
+	{
+		
+		TreeNode<Etype>* t1node = find(root, t1);
+		TreeNode<Etype>* t2node = find(root, t2);
+	
+
+		if (t1node == NULL || t2node == NULL)
+			return 0;
+		std::vector<Etype> t1List;
+		std::vector<Etype> t2List;
+
+		t1List.push_back(t1node->element);
+		t2List.push_back(t2node->element);
+		bool finished = false;
+
+		while (!finished) {
+
+			if (t1node->parent != NULL)
+			{
+			
+			//add parent element to list
+			t1List.push_back(t1node->parent->element);
+			t1node = t1node->parent;
+			}
+			if (t2node->parent != NULL) {
+			t2List.push_back(t2node->parent->element);
+			t2node = t2node->parent;
+			}
+			if (t1node->parent == NULL && t2node->parent == NULL)
+				finished = true;
+		}
+
+		for (int i = 0; i < t2List.size(); i++)
+		{
+			for (int j = 0; j < t1List.size(); j++) {
+				if (t2List.at(i) == t1List.at(j))
+					return t2List.at(i);
+			}
+		}
+		return 0;
+	}
+	
+	
+
+
 	void buildFromPreorder(Etype* list) {};
 
 	//Print the tree preceeded by the "msg".

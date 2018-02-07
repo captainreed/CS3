@@ -45,14 +45,14 @@ int main()
 	    std::cout <<  "The next sucessor is " << tree1.getCurrNodeValue() << std::endl;
 	}
 
-	/*
+	
 	tree1.printTree("Tree 3");
 
 	std::cout << "\nclosest common between 1 and 50 " << tree1.closestCommon(1,50);
 	std::cout << "\nclosest common between 19 and 22 " << tree1.closestCommon(19, 22);
 	std::cout << "\nclosest common between 11 and 30 " << tree1.closestCommon(11, 30);
 	std::cout << "\nclosest common between 15 and 30 " << tree1.closestCommon(15, 30);
-
+	/*
 	tree1.fall();
 	tree1.printTree("tree1");
 	std::cout << "The width of the tree1 is " << tree1.width() << std::endl;
