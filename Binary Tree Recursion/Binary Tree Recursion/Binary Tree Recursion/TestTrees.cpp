@@ -52,14 +52,18 @@ int main()
 	std::cout << "\nclosest common between 19 and 22 " << tree1.closestCommon(19, 22);
 	std::cout << "\nclosest common between 11 and 30 " << tree1.closestCommon(11, 30);
 	std::cout << "\nclosest common between 15 and 30 " << tree1.closestCommon(15, 30);
-	/*
+	
 	tree1.fall();
 	tree1.printTree("tree1");
+	
 	std::cout << "The width of the tree1 is " << tree1.width() << std::endl;
+	
 	tree2.printTree("tree2");
+	
 	std::cout << "The width of the tree2 is " << tree2.width() << std::endl;
-
+	
 	tree2.printTree("Tree 2");
+	/*
 	tree2.flip();
 	tree2.printTree("Flipped Tree 2");
 

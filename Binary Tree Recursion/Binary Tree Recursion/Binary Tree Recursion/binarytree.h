@@ -62,6 +62,7 @@ protected:
 
 	int size(TreeNode<Etype> *t) const;
 	TreeNode <Etype>* currentNode;
+	
 public:
 	/* Return the leftmost value in the tree.  Set a local currentNode to that node.*/
 	Etype getFirst() {
@@ -139,7 +140,41 @@ public:
 
 
 
-	int width() { return 0; }
+	int findWidth(TreeNode<Etype>* node, int &height, int level)
+	{
+		if (node == NULL)
+			return 0;
+
+		if (node->right == NULL && node->left == NULL)
+		{
+			if (level > height)
+				height = level;
+		}
+
+		level = level + 1;
+		int leftW = findWidth(node->left,height,level);
+		int rightW = findWidth(node->right,height,level);
+
+		
+		return max(leftW, rightW);
+
+	}
+
+	int width() 
+	{
+	int leftNodeHeight = 1;
+	int rightNodeHeight = 1;
+		
+	int left = findWidth(root->right, leftNodeHeight,1); 
+	int right = findWidth(root->right, rightNodeHeight,1);
+	int rootWidt = leftNodeHeight + rightNodeHeight + 2;
+
+	return max(rootWidt, max(left,right));
+	}
+
+
+
+
 	void getMaxCompleteSubtree() {}
 
 	bool perfectBalance(Etype *list, int beg, int final) { return true; }
