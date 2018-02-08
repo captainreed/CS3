@@ -1,15 +1,15 @@
 ﻿  TestTrees.cpp
-c:\users\brandon\desktop\school\cs3\cs3code\binary tree recursion\binary tree recursion\binary tree recursion\binarytree.h(245): warning C4018: '<': signed/unsigned mismatch
-  c:\users\brandon\desktop\school\cs3\cs3code\binary tree recursion\binary tree recursion\binary tree recursion\binarytree.h(213): note: while compiling class template member function 'int BinaryTree<int>::closestCommon(Etype,Etype)'
+c:\users\fearl\desktop\school\cs3\binary tree recursion\binary tree recursion\binary tree recursion\binarytree.h(259): warning C4018: '<': signed/unsigned mismatch
+  c:\users\fearl\desktop\school\cs3\binary tree recursion\binary tree recursion\binary tree recursion\binarytree.h(227): note: while compiling class template member function 'int BinaryTree<int>::closestCommon(Etype,Etype)'
           with
           [
               Etype=int
           ]
-  c:\users\brandon\desktop\school\cs3\cs3code\binary tree recursion\binary tree recursion\binary tree recursion\testtrees.cpp(51): note: see reference to function template instantiation 'int BinaryTree<int>::closestCommon(Etype,Etype)' being compiled
+  c:\users\fearl\desktop\school\cs3\binary tree recursion\binary tree recursion\binary tree recursion\testtrees.cpp(51): note: see reference to function template instantiation 'int BinaryTree<int>::closestCommon(Etype,Etype)' being compiled
           with
           [
               Etype=int
           ]
-  c:\users\brandon\desktop\school\cs3\cs3code\binary tree recursion\binary tree recursion\binary tree recursion\testtrees.cpp(10): note: see reference to class template instantiation 'BinaryTree<int>' being compiled
-c:\users\brandon\desktop\school\cs3\cs3code\binary tree recursion\binary tree recursion\binary tree recursion\binarytree.h(247): warning C4018: '<': signed/unsigned mismatch
-  Binary Tree Recursion.vcxproj -> C:\Users\Brandon\Desktop\School\CS3\CS3code\Binary Tree Recursion\Binary Tree Recursion\Debug\Binary Tree Recursion.exe
+  c:\users\fearl\desktop\school\cs3\binary tree recursion\binary tree recursion\binary tree recursion\testtrees.cpp(10): note: see reference to class template instantiation 'BinaryTree<int>' being compiled
+c:\users\fearl\desktop\school\cs3\binary tree recursion\binary tree recursion\binary tree recursion\binarytree.h(261): warning C4018: '<': signed/unsigned mismatch
+  Binary Tree Recursion.vcxproj -> C:\Users\fearl\Desktop\School\CS3\Binary Tree Recursion\Binary Tree Recursion\Debug\Binary Tree Recursion.exe

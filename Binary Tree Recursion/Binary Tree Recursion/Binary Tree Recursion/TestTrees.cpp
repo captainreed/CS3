@@ -63,10 +63,10 @@ int main()
 	std::cout << "The width of the tree2 is " << tree2.width() << std::endl;
 	
 	tree2.printTree("Tree 2");
-	/*
+	
 	tree2.flip();
 	tree2.printTree("Flipped Tree 2");
-
+	/*
 	// The preOrder definition is the node value, the number of childen it has, followed by the preOrder definition of each child.
 	// Thus, this tree is rooted at 8 and has two children.
 	int preOrderI[] = {8, 2, 10, 1, 14, 1, 13, 0, 3, 2, 6, 2, 7, 0, 4, 0, 1, 0 };

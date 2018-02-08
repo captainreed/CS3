@@ -139,7 +139,7 @@ public:
 
 
 
-
+	//=====================================================================================
 	int findWidth(TreeNode<Etype>* node, int &height, int level)
 	{
 		if (node == NULL)
@@ -147,7 +147,7 @@ public:
 
 		if (node->right == NULL && node->left == NULL)
 		{
-			if (level > height)
+			//if (level > height)
 				height = level;
 		}
 
@@ -162,12 +162,12 @@ public:
 
 	int width() 
 	{
-	int leftNodeHeight = 1;
-	int rightNodeHeight = 1;
+	int leftNodeHeight = 0;
+	int rightNodeHeight =0;
 		
-	int left = findWidth(root->right, leftNodeHeight,1); 
+	int left = findWidth(root->left, leftNodeHeight,1); 
 	int right = findWidth(root->right, rightNodeHeight,1);
-	int rootWidt = leftNodeHeight + rightNodeHeight + 2;
+	int rootWidt = leftNodeHeight + rightNodeHeight ;
 
 	return max(rootWidt, max(left,right));
 	}
@@ -205,9 +205,23 @@ public:
 		removeLeaves(root);
 	};
 
+	void flipem(TreeNode<Etype>* node)
+	{
+		if (node == NULL)
+			return;
+	
+		TreeNode<Etype>* temp = node->right;
+		node->right = node->left;
+		node->left = temp;
+		flipem(node->right);
+		flipem(node->left);
 
+	}
 
-	void flip() {};
+	void flip() 
+	{
+		flipem(root);
+	}
 
 	Etype closestCommon(Etype t1, Etype t2)
 	{
