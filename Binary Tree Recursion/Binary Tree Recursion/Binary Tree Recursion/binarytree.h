@@ -267,9 +267,52 @@ public:
 	}
 	
 	
+	TreeNode<Etype>* preorderBuilder(Etype* node, int &index)
+	{
+		TreeNode<Etype>* branch =  new TreeNode<Etype>(node[index]);
+
+		/*
+		if (node == NULL)
+			return branch;
+		
+		*/
+		
+
+		if (node[index + 1] == 0)
+			return branch;
+
+		if (node[index + 1] == 2)
+		{
+			index = index + 2;
+			branch->left = preorderBuilder(node, index);
+			branch->left->parent = branch;
+			index = index + 2;
+			branch->right = preorderBuilder(node, index);
+			branch->right->parent = branch;
+			return branch;
+		}
+
+		if (node[index + 1] == 1)
+		{
+			index = index + 2;
+			branch->left = preorderBuilder(node, index);
+			branch->left->parent = branch;
+			return branch;
+		}
+		
+
+	}
 
 
-	void buildFromPreorder(Etype* list) {};
+	void buildFromPreorder(Etype* list) 
+	{
+		int index = 0;
+		root = preorderBuilder(list, index);
+		
+	}
+
+
+
 
 	//Print the tree preceeded by the "msg".
 	// Print the tree to depth "depth"

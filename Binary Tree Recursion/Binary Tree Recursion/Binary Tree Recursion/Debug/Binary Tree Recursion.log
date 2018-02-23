@@ -12,4 +12,5 @@ c:\users\fearl\desktop\school\cs3\binary tree recursion\binary tree recursion\bi
           ]
   c:\users\fearl\desktop\school\cs3\binary tree recursion\binary tree recursion\binary tree recursion\testtrees.cpp(10): note: see reference to class template instantiation 'BinaryTree<int>' being compiled
 c:\users\fearl\desktop\school\cs3\binary tree recursion\binary tree recursion\binary tree recursion\binarytree.h(261): warning C4018: '<': signed/unsigned mismatch
+c:\users\fearl\desktop\school\cs3\binary tree recursion\binary tree recursion\binary tree recursion\binarytree.h(304): warning C4715: 'BinaryTree<int>::preorderBuilder': not all control paths return a value
   Binary Tree Recursion.vcxproj -> C:\Users\fearl\Desktop\School\CS3\Binary Tree Recursion\Binary Tree Recursion\Debug\Binary Tree Recursion.exe

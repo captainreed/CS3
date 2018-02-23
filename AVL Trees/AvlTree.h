@@ -26,7 +26,25 @@
 template <typename Comparable>
 class AvlTree
 {
+private:
+	struct AvlNode
+	{
+		Comparable element;
+		AvlNode   *left;
+		AvlNode   *right;
+		int       height;
+
+		AvlNode(const Comparable & ele, AvlNode *lt, AvlNode *rt, int h = 0)
+			: element{ ele }, left{ lt }, right{ rt }, height{ h } { }
+
+		AvlNode(Comparable && ele, AvlNode *lt, AvlNode *rt, int h = 0)
+			: element{ std::move(ele) }, left{ lt }, right{ rt }, height{ h } { }
+	};
+
+	
 public:
+	AvlNode * root;
+
 	AvlTree() : root{ nullptr }
 	{ }
 
@@ -105,24 +123,26 @@ public:
 	/**
 	* Print the tree contents in sorted order.
 	*/
-	template <class Etype>
-	void displayTheTree(TreeNode<Etype> *n, std::string indent, int currdepth, int depth)
+	void displayTheTree(AvlNode *n, std::string indent, int currdepth, int depth) const
 	{
 		if (n == NULL || currdepth>depth) return;
-		printTree(n->right, indent + "  ", currdepth + 1, depth);
-		if (n->parent != NULL)
-			cout << indent << n->element << "(" << n->parent->element << ")" << endl;
-		else
-			cout << indent << n->element << "( no parent)" << endl;
-		printTree(n->left, indent + "  ", currdepth + 1, depth);
+
+		displayTheTree(n->right, indent + "  ", currdepth + 1, depth);
+		
+		std::cout << indent << n->element << std::endl;
+
+		displayTheTree(n->left, indent + "  ", currdepth + 1, depth);
+		
 	}
+
 	void printTree() const
 	{
 		if (isEmpty())
 			std::cout << "Empty tree" << std::endl;
 		else
-			displayTheTree(root);
+			displayTheTree(root, "", 0, root->height);
 	}
+
 
 	/**
 	* Make the tree logically empty.
@@ -156,22 +176,19 @@ public:
 		remove(x, root);
 	}
 
-private:
-	struct AvlNode
+
+	void removeMin()
 	{
-		Comparable element;
-		AvlNode   *left;
-		AvlNode   *right;
-		int       height;
 
-		AvlNode(const Comparable & ele, AvlNode *lt, AvlNode *rt, int h = 0)
-			: element{ ele }, left{ lt }, right{ rt }, height{ h } { }
+		AvlNode* min = findMin(root);
 
-		AvlNode(Comparable && ele, AvlNode *lt, AvlNode *rt, int h = 0)
-			: element{ std::move(ele) }, left{ lt }, right{ rt }, height{ h } { }
-	};
+		remove(min->element);
 
-	AvlNode *root;
+	}
+
+
+
+
 
 
 	/**
@@ -344,7 +361,7 @@ private:
 		if (t != nullptr)
 		{
 			printTree(t->left);
-			std::cout  << t->element << " ";
+			std::cout << t->element << " ";
 			printTree(t->right);
 		}
 	}
@@ -378,14 +395,14 @@ private:
 	* For AVL trees, this is a single rotation for case 1.
 	* Update heights, then set new root.
 	*/
-	void rotateWithLeftChild(AvlNode * & k2)
+	void rotateWithLeftChild(AvlNode * & localRoot)
 	{
-		AvlNode *k1 = k2->left;
-		k2->left = k1->right;
-		k1->right = k2;
-		k2->height = max(height(k2->left), height(k2->right)) + 1;
-		k1->height = max(height(k1->left), k2->height) + 1;
-		k2 = k1;
+		AvlNode *leftChild = localRoot->left;
+		localRoot->left = leftChild->right;
+		leftChild->right = localRoot;
+		localRoot->height = max(height(localRoot->left), height(localRoot->right)) + 1;
+		leftChild->height = max(height(leftChild->left), localRoot->height) + 1;
+		localRoot = leftChild;
 	}
 
 	/**
@@ -393,14 +410,14 @@ private:
 	* For AVL trees, this is a single rotation for case 4.
 	* Update heights, then set new root.
 	*/
-	void rotateWithRightChild(AvlNode * & k1)
+	void rotateWithRightChild(AvlNode * & localRoot)
 	{
-		AvlNode *k2 = k1->right;
-		k1->right = k2->left;
-		k2->left = k1;
-		k1->height = max(height(k1->left), height(k1->right)) + 1;
-		k2->height = max(height(k2->right), k1->height) + 1;
-		k1 = k2;
+		AvlNode *rightChild = localRoot->right;
+		localRoot->right = rightChild->left;
+		rightChild->left = localRoot;
+		localRoot->height = max(height(localRoot->left), height(localRoot->right)) + 1;
+		rightChild->height = max(height(rightChild->right), localRoot->height) + 1;
+		localRoot = rightChild;
 	}
 
 	/**
@@ -409,10 +426,10 @@ private:
 	* For AVL trees, this is a double rotation for case 2.
 	* Update heights, then set new root.
 	*/
-	void doubleWithLeftChild(AvlNode * & k3)
+	void doubleWithLeftChild(AvlNode * & localRoot)
 	{
-		rotateWithRightChild(k3->left);
-		rotateWithLeftChild(k3);
+		rotateWithRightChild(localRoot->left);
+		rotateWithLeftChild(localRoot);
 	}
 
 	/**
@@ -421,10 +438,10 @@ private:
 	* For AVL trees, this is a double rotation for case 3.
 	* Update heights, then set new root.
 	*/
-	void doubleWithRightChild(AvlNode * & k1)
+	void doubleWithRightChild(AvlNode * & localRoot)
 	{
-		rotateWithLeftChild(k1->right);
-		rotateWithRightChild(k1);
+		rotateWithLeftChild(localRoot->right);
+		rotateWithRightChild(localRoot);
 	}
 };
 
