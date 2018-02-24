@@ -33,8 +33,8 @@ int main()
 			if (print == "1")
 				printFull = true;
 
-			aStarSolve aStar = aStarSolve(initialBoard);
-			aStar.solve();
+			aStarSolve aStar(initialBoard);
+			aStar.solve(initialBoard);
 			
 		}
 	}

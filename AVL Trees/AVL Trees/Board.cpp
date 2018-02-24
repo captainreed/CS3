@@ -45,6 +45,26 @@ bool Board::operator==(Board &b) {
 	return true;
 }
 
+//return true if boards priority is greater than b
+bool Board::operator>(Board &b) {
+
+	return this->priority > b.priority;
+}
+
+bool Board::operator>=(Board &b) {
+
+	return this->priority >= b.priority;
+}
+//return true if boards priority is less than b
+bool Board::operator<(Board &b) {
+
+	return this->priority < b.priority;
+}
+
+bool Board::operator<=(Board &b) {
+
+	return this->priority <= b.priority;
+}
 //Create a board by performing legal moves on a board
 //jumbleCt indicates the number of moves that may be required
 //if jumbleCt ==0, return the winning board

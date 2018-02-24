@@ -11,6 +11,8 @@
 class Board {
 public:
 	static const int SIZE = 3;
+	int costSoFar;
+	int priority;//the cost to solve from current step
 	Board *next;
 	std::string history;//this will be the string that holds the history of the board
 	int generation;//the generation of the board from the original
@@ -24,6 +26,10 @@ public:
 	void makeBoard(int jumbleCt);  //Starting from a perfect board, do jumbleCt moves to alter it
 	std::string toString() const;  //return a string which represents the contents of the board
 	bool operator==(Board &b);   //Return true if two boards are equal
+	bool operator>(Board &b);
+	bool operator<(Board &b);
+	bool operator<=(Board &b);
+	bool operator>=(Board &b);
 	Board() { makeBoard(0); };
 	void rotateEast(int row);
 	void rotateWest(int row);
