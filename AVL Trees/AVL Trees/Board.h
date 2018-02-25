@@ -25,7 +25,7 @@ public:
 							  //void makeBoard(int jumbleCt = 0);  //Starting from a perfect board, do jumbleCt moves to alter it
 	void makeBoard(int jumbleCt);  //Starting from a perfect board, do jumbleCt moves to alter it
 	std::string toString() const;  //return a string which represents the contents of the board
-	bool operator==(Board &b);   //Return true if two boards are equal
+	bool operator==(Board &b);   //Return true if two boards are equal	
 	bool operator>(Board &b);
 	bool operator<(Board &b);
 	bool operator<=(Board &b);

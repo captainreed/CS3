@@ -65,6 +65,7 @@ bool Board::operator<=(Board &b) {
 
 	return this->priority <= b.priority;
 }
+
 //Create a board by performing legal moves on a board
 //jumbleCt indicates the number of moves that may be required
 //if jumbleCt ==0, return the winning board

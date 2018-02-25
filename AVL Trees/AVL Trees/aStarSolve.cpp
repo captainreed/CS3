@@ -8,6 +8,7 @@ aStarSolve::aStarSolve(Board &input)
 {
 	input.costSoFar = 0;
 	input.priority = 0;
+	theTree.insert(input);
 }
 aStarSolve::~aStarSolve()
 {
@@ -20,6 +21,7 @@ void aStarSolve::solve(Board input)
 	Board latest;
 	Board solvedBoard;
 	solvedBoard.makeBoard(0);
+	insertChildren(input, theTree);
 
 	while (!solved)
 	{
@@ -75,15 +77,17 @@ bool aStarSolve::correctRow(int row, int col, Board input, Board solvedBoard)
 		if (input.board[row][col] == solvedBoard.board[i][col])
 			rightRow = true;
 	}
+	return rightRow;
 }
 bool aStarSolve::correctCol(int row, int col, Board input, Board solvedBoard)
 {
-	bool rightRow = false;
+	bool rightCol = false;
 	for (int i = 0; i < 3; i++)
 	{
 		if (input.board[row][col] == solvedBoard.board[row][i])
-			rightRow = true;
+			rightCol = true;
 	}
+	return rightCol;
 }
 
 
@@ -98,12 +102,12 @@ void aStarSolve::insertChildren(Board bIn, AvlTree<Board> &thetree)
 
 	for (int i = 0; i < 12; i++)
 	{
-		Board b = bIn;
+		Board b(bIn);
 		b.writeHistory(b.move(i));
 		b.prevMove = i;
 		b.generation = bIn.generation + 1;
-		b.costSoFar += 1;
-		b.priority = getPriority(b,solvedBoard);
+		b.costSoFar = b.costSoFar + 1;
+		b.priority = getPriority(b,solvedBoard) + b.costSoFar;
 		thetree.insert(b);
 	}
 

@@ -34,7 +34,7 @@ private:
 		AvlNode   *right;
 		int       height;
 
-		AvlNode(const Comparable & ele, AvlNode *lt, AvlNode *rt, int h = 0)
+		AvlNode(Comparable & ele, AvlNode *lt, AvlNode *rt, int h = 0)
 			: element{ ele }, left{ lt }, right{ rt }, height{ h } { }
 
 		AvlNode(Comparable && ele, AvlNode *lt, AvlNode *rt, int h = 0)
@@ -87,7 +87,7 @@ public:
 	* Find the smallest item in the tree.
 	* Abort if empty.
 	*/
-	const Comparable & findMin() const
+	 Comparable & findMin()
 	{
 		assert(!isEmpty());
 		return findMin(root)->element;
@@ -97,7 +97,7 @@ public:
 	* Find the largest item in the tree.
 	* Abortif empty.
 	*/
-	const Comparable & findMax() const
+	Comparable & findMax()
 	{
 		assert(!isEmpty());;
 		return findMax(root)->element;
@@ -106,7 +106,7 @@ public:
 	/**
 	* Returns true if x is found in the tree.
 	*/
-	bool contains(const Comparable & x) const
+	bool contains( Comparable & x)
 	{
 		return contains(x, root);
 	}
@@ -115,7 +115,7 @@ public:
 	* Test if the tree is logically empty.
 	* Return true if empty, false otherwise.
 	*/
-	bool isEmpty() const
+	bool isEmpty()
 	{
 		return root == nullptr;
 	}
@@ -123,7 +123,7 @@ public:
 	/**
 	* Print the tree contents in sorted order.
 	*/
-	void displayTheTree(AvlNode *n, std::string indent, int currdepth, int depth) const
+	void displayTheTree(AvlNode *n, std::string indent, int currdepth, int depth)
 	{
 		if (n == NULL || currdepth>depth) return;
 
@@ -135,7 +135,7 @@ public:
 		
 	}
 
-	void printTree() const
+	void printTree() 
 	{
 		if (isEmpty())
 			std::cout << "Empty tree" << std::endl;
@@ -155,7 +155,7 @@ public:
 	/**
 	* Insert x into the tree; duplicates are allowed
 	*/
-	void insert(const Comparable & x)
+	void insert(Comparable & x)
 	{
 		insert(x, root);
 	}
@@ -171,7 +171,7 @@ public:
 	/**
 	* Remove x from the tree. Nothing is done if x is not found.
 	*/
-	void remove(const Comparable & x)
+	void remove( Comparable & x)
 	{
 		remove(x, root);
 	}
@@ -197,9 +197,9 @@ public:
 	* t is the node that roots the subtree.
 	* Set the new root of the subtree.
 	*/
-	void insert(const Comparable & x, AvlNode * & t)
+	void insert( Comparable & x, AvlNode * & t)
 	{
-		std::cout << "insert &" << x << std::endl;
+		//std::cout << "insert &" << x << std::endl;
 		if (t == nullptr)
 			t = new AvlNode{ x, nullptr, nullptr };
 		else if (x <= t->element)
@@ -235,7 +235,7 @@ public:
 	* t is the node that roots the subtree.
 	* Set the new root of the subtree.
 	*/
-	void remove(const Comparable & x, AvlNode * & t)
+	void remove(Comparable & x, AvlNode * & t)
 	{
 		if (t == nullptr)
 			return;   // Item not found; do nothing
@@ -313,7 +313,7 @@ public:
 	* x is item to search for.
 	* t is the node that roots the tree.
 	*/
-	bool contains(const Comparable & x, AvlNode *t) const
+	bool contains( Comparable & x, AvlNode *t) const
 	{
 		if (t == nullptr)
 			return false;

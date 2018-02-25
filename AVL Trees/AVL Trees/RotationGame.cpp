@@ -18,6 +18,8 @@ int main()
 	for (int i = 0; i < 3; i++) {
 		std::string operation;
 		initialBoard.inputBoard(fileList[i]);
+		//initialBoard.inputBoard("../input0.txt");
+
 		initialBoard.generation = -1;
 		initialBoard.prevMove = 12;
 		initialBoard.history = "";
