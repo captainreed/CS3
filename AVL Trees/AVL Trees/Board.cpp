@@ -81,7 +81,10 @@ void Board::makeBoard(int jumbleCt) {
 Board::Board(const Board &b) {
 
 	history = b.history;
+	index = b.index;
 	generation = b.generation;
+	costSoFar = b.costSoFar;
+	priority = b.priority;
 	prevMove = b.prevMove;
 	assert(SIZE > 0);
 	for (int i = 0; i < SIZE; i++)

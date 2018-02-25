@@ -12,7 +12,8 @@ class Board {
 public:
 	static const int SIZE = 3;
 	int costSoFar;
-	int priority;//the cost to solve from current step
+	int index;
+	float priority;//the cost to solve from current step
 	Board *next;
 	std::string history;//this will be the string that holds the history of the board
 	int generation;//the generation of the board from the original

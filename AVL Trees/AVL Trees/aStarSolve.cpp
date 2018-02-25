@@ -21,12 +21,14 @@ void aStarSolve::solve(Board input)
 	Board latest;
 	Board solvedBoard;
 	solvedBoard.makeBoard(0);
+	input.index = index;
 	insertChildren(input, theTree);
 
 	while (!solved)
 	{
 		latest = theTree.findMin();
 		theTree.removeMin();
+		latest.index = index;
 
 		if (solvedBoard.operator==(latest))
 		{
@@ -38,7 +40,9 @@ void aStarSolve::solve(Board input)
 		else
 		{
 
+			//std::cout << "State " << index << " From State " << latest.generation << " History " << latest.getHistory() << "pevious index" << latest.prevMove << std::endl;
 			std::cout << "State " << index << " From State " << latest.generation << " History " << latest.getHistory() << std::endl;
+
 			std::cout << latest.toString() << std::endl;
 
 			//create the 12 possible boards from this board and add them to the queue
@@ -49,9 +53,9 @@ void aStarSolve::solve(Board input)
 
 }
 
-int aStarSolve::getPriority(Board &input, Board solvedBoard)
+float aStarSolve::getPriority(Board &input, Board solvedBoard)
 {
-	int prioritySum = 0;
+	float prioritySum = 0;
 
 	for (int row = 0; row < 3; row++)
 	{
@@ -66,7 +70,7 @@ int aStarSolve::getPriority(Board &input, Board solvedBoard)
 		}
 		
 	}
-	return prioritySum;
+	return prioritySum/3;
 	
 }
 bool aStarSolve::correctRow(int row, int col, Board input, Board solvedBoard)
@@ -104,7 +108,8 @@ void aStarSolve::insertChildren(Board bIn, AvlTree<Board> &thetree)
 	{
 		Board b(bIn);
 		b.writeHistory(b.move(i));
-		b.prevMove = i;
+		b.prevMove = bIn.index;
+		b.index = -1;
 		b.generation = bIn.generation + 1;
 		b.costSoFar = b.costSoFar + 1;
 		b.priority = getPriority(b,solvedBoard) + b.costSoFar;

@@ -8,7 +8,7 @@ class aStarSolve
 public:
 	AvlTree<Board> theTree;
 	aStarSolve(Board &input);
-	int getPriority(Board &input, Board solvedBoard);
+	float getPriority(Board &input, Board solvedBoard);
 	void solve(Board input);
 	~aStarSolve();
 private:
