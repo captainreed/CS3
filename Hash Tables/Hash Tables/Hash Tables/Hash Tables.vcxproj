@@ -115,10 +115,12 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\HashTable.cpp" />
+    <ClCompile Include="HashTable.cpp" />
+    <ClCompile Include="ThePoet.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\HashTable.h" />
+    <ClInclude Include="HashTable.h" />
+    <ClInclude Include="WordList.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

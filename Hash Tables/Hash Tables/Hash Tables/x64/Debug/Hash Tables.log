@@ -1,0 +1,31 @@
+﻿  ThePoet.cpp
+c:\users\brandon\desktop\school\cs3\cs3code\hash tables\hash tables\hash tables\thepoet.cpp(74): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+c:\users\brandon\desktop\school\cs3\cs3code\hash tables\hash tables\hash tables\hashtable.h(77): warning C4267: 'initializing': conversion from 'size_t' to 'int', possible loss of data
+  c:\users\brandon\desktop\school\cs3\cs3code\hash tables\hash tables\hash tables\hashtable.h(75): note: while compiling class template member function 'int HashTable<std::string,FirstWord>::findPos(const HashKey &) const'
+          with
+          [
+              HashKey=std::string
+          ]
+  c:\users\brandon\desktop\school\cs3\cs3code\hash tables\hash tables\hash tables\hashtable.h(155): note: see reference to function template instantiation 'int HashTable<std::string,FirstWord>::findPos(const HashKey &) const' being compiled
+          with
+          [
+              HashKey=std::string
+          ]
+  c:\users\brandon\desktop\school\cs3\cs3code\hash tables\hash tables\hash tables\hashtable.h(153): note: while compiling class template member function 'FirstWord *HashTable<std::string,FirstWord>::insert(const HashKey,HashRecord *)'
+          with
+          [
+              HashKey=std::string,
+              HashRecord=FirstWord
+          ]
+  c:\users\brandon\desktop\school\cs3\cs3code\hash tables\hash tables\hash tables\thepoet.cpp(128): note: see reference to function template instantiation 'FirstWord *HashTable<std::string,FirstWord>::insert(const HashKey,HashRecord *)' being compiled
+          with
+          [
+              HashKey=std::string,
+              HashRecord=FirstWord
+          ]
+  c:\users\brandon\desktop\school\cs3\cs3code\hash tables\hash tables\hash tables\thepoet.cpp(22): note: see reference to class template instantiation 'HashTable<std::string,FirstWord>' being compiled
+c:\users\brandon\desktop\school\cs3\cs3code\hash tables\hash tables\hash tables\hashtable.h(84): warning C4267: '=': conversion from 'size_t' to 'int', possible loss of data
+c:\users\brandon\desktop\school\cs3\cs3code\hash tables\hash tables\hash tables\hashtable.h(110): warning C4267: 'argument': conversion from 'size_t' to 'int', possible loss of data
+  c:\users\brandon\desktop\school\cs3\cs3code\hash tables\hash tables\hash tables\hashtable.h(106): note: while compiling class template member function 'void HashTable<std::string,FirstWord>::rehash(void)'
+  c:\users\brandon\desktop\school\cs3\cs3code\hash tables\hash tables\hash tables\hashtable.h(165): note: see reference to function template instantiation 'void HashTable<std::string,FirstWord>::rehash(void)' being compiled
+  Hash Tables.vcxproj -> C:\Users\Brandon\Desktop\School\CS3\CS3code\Hash Tables\Hash Tables\x64\Debug\Hash Tables.exe
