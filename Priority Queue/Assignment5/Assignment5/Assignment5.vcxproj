@@ -115,14 +115,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\ItemType.h" />
-    <ClInclude Include="..\..\Node.h" />
-    <ClInclude Include="..\..\PQ.h" />
-    <ClInclude Include="..\..\PQHeap.h" />
+    <ClInclude Include="ItemType.h" />
+    <ClInclude Include="MaxHeap.h" />
+    <ClInclude Include="MinHeap.h" />
+    <ClInclude Include="Node.h" />
+    <ClInclude Include="PQ.h" />
+    <ClInclude Include="PQHeap.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\PQHeap.cpp" />
-    <ClCompile Include="..\..\TestPQ.cpp" />
+    <ClCompile Include="PQHeap.cpp" />
+    <ClCompile Include="TestPQ.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
