@@ -117,6 +117,7 @@
   <ItemGroup>
     <ClInclude Include="ItemType.h" />
     <ClInclude Include="MaxHeap.h" />
+    <ClInclude Include="MedianHeap.h" />
     <ClInclude Include="MinHeap.h" />
     <ClInclude Include="Node.h" />
     <ClInclude Include="PQ.h" />
