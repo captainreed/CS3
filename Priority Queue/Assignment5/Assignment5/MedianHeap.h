@@ -38,7 +38,7 @@ public:
 			currMedian = Max.deleteMax();
 			Min.insert(oldMedian);
 		}
-		if (Min.size > Max.size + 1)
+		if (Min.size > Max.size + 1 && Min.size > -1)
 		{
 			ItemType oldMedian = currMedian;
 			currMedian = Min.deleteMin();

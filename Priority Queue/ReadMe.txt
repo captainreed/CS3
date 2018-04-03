@@ -1,0 +1,2 @@
+this program was written by brandon Reed. each of the types of heaps has its own class "minHeap", "maxHeap", and "medianHeap"
+note that only maxHeap has a constructor that requires input. the testbench for each of the heap classes is available in TestPQ.cpp

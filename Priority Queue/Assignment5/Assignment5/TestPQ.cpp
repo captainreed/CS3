@@ -6,7 +6,7 @@
 //#include "SkewHeap.h"
 //#include "Leftist.h"
 
-//Insert limit elements of the file fin into heap.
+//Insert elements of the file fin into a PQ heap object. 
 void insertNext(PQ & pq,std::ifstream & fin,int limit=0) 
 {	if (limit ==0) 
 		limit = std::numeric_limits<int>::max();
@@ -20,7 +20,7 @@ void insertNext(PQ & pq,std::ifstream & fin,int limit=0)
 		pq.insert(item);
 	}
 }
-
+//Insert elements of the file fin into a minHeap heap object. 
 void insertNext(minHeap & pq, std::ifstream & fin, int limit = 0)
 {
 	if (limit == 0)
@@ -35,7 +35,7 @@ void insertNext(minHeap & pq, std::ifstream & fin, int limit = 0)
 		pq.insert(item);
 	}
 }
-
+//Insert elements of the file fin into a medianHeap object. 
 void insertNext(medianHeap & pq, std::ifstream & fin, int limit = 0)
 {
 	if (limit == 0)
@@ -50,7 +50,6 @@ void insertNext(medianHeap & pq, std::ifstream & fin, int limit = 0)
 		pq.insert(item);
 	}
 }
-
 
 int main()
 {   
@@ -100,14 +99,15 @@ int main()
 
 	//process time for median heap operation
 	clock_t medclk = clock();
+	int counter=0;
 	std::ifstream medfin;
 	medfin.open("Prog5In.txt");
 	assert(medfin);
-
-	for (int i = 0; i < 60; i++)
+	while(!medfin.eof())
 	{
-		insertNext(medHeap, medfin, HOWMANY);
 		
+		insertNext(medHeap, medfin, HOWMANY);
+		if(counter%100 == 0)
 		std::cout << medHeap.getMedian().toString() << std::endl;
 	}
 
@@ -115,7 +115,7 @@ int main()
 	clock_t medtime = clock() - medclk;
 	std::cout << "Elapsed time = " << ((float)maxtime) / CLOCKS_PER_SEC << std::endl;
 	medfin.close();
-		
+	std::cout << "its over" << std::endl;
 	std::cin.ignore();
 }
 

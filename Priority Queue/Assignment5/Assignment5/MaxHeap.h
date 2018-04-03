@@ -7,6 +7,7 @@ class maxHeap : public PQHeap
 {
 public:
 	static const int KIDS = 4;
+	//max heap constructor
 	maxHeap(std::string name = "max heap", int physicalSize =6000)
 	{
 		this->name = name;
