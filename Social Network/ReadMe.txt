@@ -1,0 +1,2 @@
+this program was written by Brandon Reed. the main mehtod for this program is contained within TestNetwork.cpp the variable
+setSize is the size of the array of integers that will be used in the union and find opperations
