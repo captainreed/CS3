@@ -115,14 +115,10 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="friend.cpp" />
-    <ClCompile Include="friendGroup.cpp" />
     <ClCompile Include="TestNetwork.cpp" />
     <ClCompile Include="unionFind.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="friend.h" />
-    <ClInclude Include="friendGroup.h" />
     <ClInclude Include="unionFind.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

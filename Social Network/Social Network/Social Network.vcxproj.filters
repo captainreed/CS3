@@ -18,24 +18,12 @@
     <ClCompile Include="TestNetwork.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="friend.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="unionFind.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="friendGroup.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="friend.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="unionFind.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="friendGroup.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

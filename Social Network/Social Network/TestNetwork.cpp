@@ -1,5 +1,3 @@
-#include "friend.h"
-#include "friendGroup.h"
 #include "unionFind.h"
 #include <assert.h>
 #include <iostream>
@@ -9,21 +7,15 @@
 
 
 
-bool isComplete(Friend list[]);
+int rootCount(unionFind set);
 
 void main()
 {
-	const int listSize = 100;
-	Friend theList [listSize];
+	unionFind testSet(100);
 	srand(time(NULL));
 	bool finished = false;
 	int days = 0;
 
-	for(int i = 0; i < listSize; i++)
-	{
-		theList[i].id = i;
-	}
-	
 	while (!finished)
 	{
 		days++;
@@ -31,17 +23,23 @@ void main()
 		int f2 = rand() % 100 + 1;
 		if(f1 == f2)
 			f2 = rand() % 100 + 1;
-		theList[f1].connect(f2);
-		if (isComplete(theList))
+		testSet.Union(f1, f2);
+		if (rootCount(testSet) == 1)
 			finished = true;
 
 	}
-
-	
 	std::cout << days << std::endl;
+	std::string answer;
+	std::cin >> answer;
 }
 
-bool isComplete(Friend list[])
+int rootCount(unionFind set)
 {
-
+	int roots = 0;
+	for (int i = 0; i < set.theList.size(); i++)
+	{
+		if (set.theList[i] < 0)
+			roots++;
+	}
+	return roots == 1;
 }
