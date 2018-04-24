@@ -36,7 +36,6 @@ public:
 			size = ((int)line[0] - '0')*pow(10,i);
 		}
 		
-
 		vector<int> secondary(size, -1);
 		adjmatrix.resize(size, secondary);
 		while (getline(fin, line))
@@ -52,11 +51,29 @@ public:
 		fin.close();
 	};
 
+	bool eulerExists()
+	{
+		for (int i = 0; i < size; i++)
+		{
+			int nodect = 0;
+			for (int j = 0; j < size; j++)
+			{
+				if (adjmatrix[i][j] > 0)
+					nodect++;
+			}
+			if (nodect % 2 != 0)
+				return false;
+		}
+		return true;
+	};
+
 	void addEdge(Edge e1)
 	{
 		adjmatrix[e1.fromNode][e1.toNode] = 1;
 		adjmatrix[e1.toNode].at(e1.fromNode) = 1;
-	}
+	};
+
+
 	void printAdjMatrix()
 	{
 		for (int i = 0; i < size; i++)
@@ -68,22 +85,19 @@ public:
 			}
 			cout << "" << endl;
 		}
-	}
+	};
 	void pringEdgeList()
 	{
 		for (int i = 0; i < edgeList.size(); i++)
 		{
 			cout << edgeList[i].toString() << endl; 
 		}
-	}
+	};
 
 	void computeTour(ofstream output)
 	{
 
 	};
-
-
-
 
 	~Graph();
 
