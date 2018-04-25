@@ -14,45 +14,30 @@ void main ()
 
    Graph g("prog7A.txt");
 
-   if (g.eulerExists())
-   {
-	   cout << "prog 7A edge list " << endl;
-	   g.pringEdgeList();
-	   cout << "prog 7A Matrix  " << endl;
-	   g.printAdjMatrix();
-   }
-   else
-   {
-	   cout << " no eulerian path";
-   }
-  // g.computeTour(fout);  // If I want the output to appear on console, I just make the parameter "cout"
+   cout << "prog 7A edge list " << endl;
+   g.markCycles();
+   g.printEdgeList();
+   cout << "prog 7A Matrix  " << endl;
+   g.printAdjMatrix();
+ 
+  //g.computeTour(fout);  // If I want the output to appear on console, I just make the parameter "cout"
 
-   Graph g1("prog7B.txt");
-   if (g1.eulerExists())
-   {
-   cout << "prog 7B edge list " << endl;
-   g1.pringEdgeList();
-   cout << "prog 7B Matrix  " << endl;
-   g1.printAdjMatrix();
-}
-   else
-   {
-	   cout << " no eulerian path";
-   }
+  Graph g1("prog7B.txt");
+  cout << "prog 7B edge list " << endl;
+  g1.markCycles();
+  g1.printEdgeList();
+  cout << "prog 7B Matrix  " << endl;
+  g1.printAdjMatrix();
+ 
   // g1.computeTour(fout);
 
-   Graph g2("prog7C.txt");
-   if (g2.eulerExists())
-   {
-   cout << "prog 7C edge list " << endl;
-   g2.pringEdgeList();
-   cout << "prog 7C Matrix  " << endl;
-   g2.printAdjMatrix();
-	  }
-   else
-   {
-	   cout << " no eulerian path";
-   }
+  Graph g2("prog7C.txt");
+  cout << "prog 7C edge list " << endl;
+  g2.markCycles();
+  g2.printEdgeList();
+  cout << "prog 7C Matrix  " << endl;
+  g2.printAdjMatrix();
+
    //g2.computeTour(cout);
 
    string wait;

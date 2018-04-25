@@ -4,10 +4,12 @@ using namespace std;
 
 class Edge
 {  public:
-     int toNode;  // Subscript of one endpoint in node array.  Nodes are stored as numbers, but printed as characters.
 	 int fromNode; // Subscript of other endpoint in node array
+     int toNode;  // Subscript of one endpoint in node array.  Nodes are stored as numbers, but printed as characters.
 	 int cycleID;  // Cycle which the edge is a member of, -1 if it is included in no cycle
+	 int edgeIndex; // the position of the edge in the edge list
 	 bool used;    // true if edge is used in final tour
+
 
    // Create a string version of Edge
    // Edge endpoints are stored as numbers, but printed as characters.
